@@ -18,6 +18,12 @@ public abstract class layer {
 	
 	public abstract void bp(matrix test, double learning_rate);
 	
+	public abstract void bp(double learning_rate);
+	
+	public abstract void dz();
+	
+	public abstract void dz(matrix test);
+	
 	abstract void updateWeights(double learning_rate);
 	
 	abstract matrix dz_next();
@@ -44,5 +50,6 @@ public abstract class layer {
 	
 	abstract matrix get_output();
 	
+	abstract void bp_adam(double learning_rate, int epoch_num);
 }
 

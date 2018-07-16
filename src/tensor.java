@@ -97,6 +97,26 @@ public class tensor {
 			}
 		return newmat;
 	}
+	
+	
+	
+	public static matrix divides(matrix m1, matrix m2) throws ArithmeticException {
+		int a = m1.rows;
+		int b = m1.columns;
+		matrix newmat = new matrix(a, b);
+		for (int i = 0; i < a*b; ++i) {
+				newmat.mat[i] = m1.mat[i] / m2.mat[i];
+			}
+		return newmat;
+	}
+	
+	public static matrix sqrt(matrix m1) {
+		matrix newmat = new matrix(m1.rows, m1.columns);
+		for(int i = 0 ; i < m1.rows*m1.columns; ++i) {
+			newmat.mat[i] = Math.sqrt(m1.mat[i]);
+		}
+		return newmat;
+	}
 
 	public static matrix scalar_mult(double S, matrix m) {
 		int a = m.getrows();

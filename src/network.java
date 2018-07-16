@@ -16,23 +16,23 @@ public class network {
 		}
 	}
 	
-	void runn(matrix input, matrix test, double learning_rate) {
+	void runn(matrix input, matrix test, optimizer o,int epoch_num) {
 		head.set_x(input);
 		layer curr =  head;
 		while(curr != tail) {
 			curr.fp();
 			curr = curr.next();
-			
 		}
 		curr.fp();
 		while(curr != null) {
-			curr.bp(test, learning_rate); 
+			o.bp(curr,test, epoch_num); 
 			curr = curr.prev();
 		}
 	}
 	
 	
-	void runn(int training_iters, matrix input, matrix test, double learning_rate) {
+	void runn(int training_iters, matrix input, matrix test, optimizer o) {
+		int epoch_num = 1;
 		head.set_x(input);
 		layer curr =  head;
 		while(curr != tail) {
@@ -47,7 +47,9 @@ public class network {
 		tensor.print_m(test);
 
 		for(int i = 0; i < training_iters; ++i) {
-			runn(input, test, learning_rate);
+			runn(input, test, o, epoch_num);
+			System.out.println("Step :  " + epoch_num);
+			epoch_num+=1;
 		}
 		
 		head.set_x(input);
